@@ -3,7 +3,8 @@ import { Observable, from } from "rxjs";
 import { Repository} from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { PostEntity } from "../entities/PostEntity";
-import { CreatePostDTO } from "../dtos/createPostDTO";
+import { CreatePostDto } from "../dtos/createPostDto";
+import { PostDto } from "../dtos/PostDto";
 
 @Injectable({
 
@@ -19,7 +20,7 @@ export class PostService{
         return from( this.postRepository.find());
     }
 
-    public create(CreatePostDTO: CreatePostDTO) { 
+    public create(CreatePostDTO: CreatePostDto): Promise<PostDto> { 
      return this.postRepository.save(CreatePostDTO);
     }
 }
